@@ -75,7 +75,7 @@ export default function Gallery({ title, subtitle, images }: GalleryProps) {
           <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.5 }} className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-10" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
+        <div className="grid grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
           {images.map((image, i) => (
             <GalleryImageCard key={image.id} image={image} index={i} onClick={() => setLightboxIndex(i)} />
           ))}

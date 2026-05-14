@@ -123,25 +123,25 @@ export default function EventDetails({ title, subtitle, intro, events }: EventDe
       <LuxuryPattern variant="islamic" opacity="opacity-[0.03]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-10 lg:px-16 pt-16">
-        <div className="text-center mb-24 md:mb-32 lg:mb-40">
+        <div className="text-center mb-20 md:mb-28">
           <motion.p variants={subtitleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-[#D4AF37]/60 text-xs tracking-[0.4em] uppercase mb-6 font-cinzel drop-shadow-sm">
+            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.4em] uppercase mb-4 font-cinzel">
             {subtitle}
           </motion.p>
           <motion.h2 variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-cinzel text-[#D4AF37] tracking-[0.02em] gold-glow pb-2">
+            className="text-4xl md:text-6xl lg:text-7xl font-cinzel text-[#D4AF37] tracking-[0.02em] gold-glow">
             {title}
           </motion.h2>
           
-          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.5 }} className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-10 mb-8" />
+          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.2, delay: 0.3 }} className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-8 mb-6" />
           
-          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.8 }}
-            className="text-[#F5E6CA]/60 text-base md:text-xl max-w-2xl mx-auto font-cormorant leading-[1.8] italic drop-shadow-md">
+          <motion.p initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }}
+            className="text-[#F5E6CA]/60 text-base md:text-lg max-w-2xl mx-auto font-cormorant leading-[1.8] italic">
             {intro}
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-10 md:gap-14 lg:gap-16">
+        <div className="flex justify-center">
           {events.map((event, i) => (
             <EventCard key={event.title} event={event} index={i} />
           ))}

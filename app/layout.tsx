@@ -24,31 +24,31 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aisy-yusuf.com"),
-  title: "Aisha & Yusuf | Royal Wedding Invitation",
+  metadataBase: new URL("https://hasan-rugayyah.com"),
+  title: "Sayyid Hasan & Syarifah Rugayyah | Undangan Pernikahan",
   description:
-    "Undangan pernikahan Aisha Rahmah Putri & Yusuf Al-Hakim. Sabtu, 18 Juli 2026. Bertempat di Masjid Agung Al-Mukarram, Bandung.",
+    "Undangan pernikahan Syarifah Rugayyah binti Almarhum Al Habib Hasan Bin Ja'far Assegaf & Sayyid Hasan bin Alwi Ba'aly. Minggu, 21 Juni 2026. Bertempat di Masjid Nurul Musthofa Center, Cilodong, Depok.",
   openGraph: {
-    title: "Aisha & Yusuf | Royal Wedding Invitation",
+    title: "Sayyid Hasan & Syarifah Rugayyah | Undangan Pernikahan",
     description:
-      "Undangan pernikahan Aisha Rahmah Putri & Yusuf Al-Hakim. Sabtu, 18 Juli 2026.",
+      "Undangan pernikahan Syarifah Rugayyah & Sayyid Hasan. Minggu, 21 Juni 2026. Bertempat di Masjid Nurul Musthofa Center, Cilodong, Depok.",
     type: "website",
     locale: "id_ID",
-    siteName: "Aisha & Yusuf Royal Wedding",
+    siteName: "Hasan & Rugayyah Wedding",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Aisha & Yusuf Royal Wedding Invitation",
+        alt: "Sayyid Hasan & Syarifah Rugayyah Wedding Invitation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aisha & Yusuf | Royal Wedding Invitation",
+    title: "Sayyid Hasan & Syarifah Rugayyah | Undangan Pernikahan",
     description:
-      "Undangan pernikahan Aisha Rahmah Putri & Yusuf Al-Hakim. Sabtu, 18 Juli 2026.",
+      "Undangan pernikahan Syarifah Rugayyah & Sayyid Hasan. Minggu, 21 Juni 2026.",
     images: ["/og-image.jpg"],
   },
   robots: {

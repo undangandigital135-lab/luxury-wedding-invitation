@@ -24,20 +24,39 @@ body {
 }
 
 /* ── Typography ── */
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 15px;
+  }
+}
+
 h1, h2, h3, h4 {
   text-rendering: optimizeLegibility;
+  letter-spacing: 0.02em;
+}
+
+p {
+  letter-spacing: 0.01em;
+  line-height: 1.7;
 }
 
 .font-cinzel {
   font-family: var(--font-display);
+  letter-spacing: 0.04em;
 }
 
 .font-cormorant {
   font-family: var(--font-serif);
+  letter-spacing: 0.02em;
 }
 
 .font-arabic {
   font-family: "Scheherazade New", "Traditional Arabic", serif;
+  letter-spacing: 0;
 }
 
 /* ── Gold text glow ── */

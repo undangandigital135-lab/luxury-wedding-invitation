@@ -28,9 +28,8 @@ interface LoveStoryProps {
 function TimelineDot() {
   return (
     <div className="relative flex items-center justify-center">
-      <div className="absolute w-8 h-8 rounded-full bg-[#D4AF37]/10 animate-pulse" />
-      <div className="absolute w-4 h-4 rounded-full bg-[#D4AF37]/30" />
-      <div className="w-2 h-2 rounded-full bg-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.8)]" />
+      <div className="absolute w-6 h-6 rounded-full bg-[#D4AF37]/10" />
+      <div className="w-2 h-2 rounded-full bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
     </div>
   );
 }
@@ -118,34 +117,34 @@ export default function LoveStory({ title, subtitle, intro, milestones }: LoveSt
       <LuxuryPattern variant="islamic" opacity="opacity-[0.03]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 lg:px-16 pt-10">
-        <div className="text-center mb-32 md:mb-48">
+        <div className="text-center mb-24 md:mb-32">
           <motion.p variants={subtitleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-[#D4AF37]/60 text-xs tracking-[0.5em] uppercase mb-6 font-cinzel drop-shadow-sm">
+            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.5em] uppercase mb-4 font-cinzel">
             {subtitle}
           </motion.p>
           <motion.h2 variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-cinzel text-[#D4AF37] tracking-[0.02em] gold-glow pb-2">
+            className="text-4xl md:text-6xl lg:text-7xl font-cinzel text-[#D4AF37] tracking-[0.02em] gold-glow">
             {title}
           </motion.h2>
           
-          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.5 }} className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-10 mb-8" />
+          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.2, delay: 0.3 }} className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-8 mb-6" />
 
-          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.8 }}
-            className="text-[#F5E6CA]/60 text-base md:text-xl mt-6 max-w-2xl mx-auto font-cormorant leading-[1.8] italic drop-shadow-md">
+          <motion.p initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }}
+            className="text-[#F5E6CA]/60 text-base md:text-lg max-w-2xl mx-auto font-cormorant leading-[1.8] italic">
             {intro}
           </motion.p>
         </div>
 
-        <div className="relative hidden md:block mt-20">
-          <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#D4AF37]/5 via-[#D4AF37]/20 to-[#D4AF37]/5 -translate-x-1/2 shadow-[0_0_15px_rgba(212,175,55,0.1)]" />
-          <div className="space-y-40">
+        <div className="relative hidden md:block mt-16">
+          <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-[#D4AF37]/5 via-[#D4AF37]/15 to-[#D4AF37]/5 -translate-x-1/2" />
+          <div className="space-y-32">
             {milestones.map((m, i) => (
               <MilestoneCard key={m.year} milestone={m} index={i} isLeft={i % 2 === 0} />
             ))}
           </div>
         </div>
 
-        <div className="md:hidden mt-20">
+        <div className="md:hidden mt-16">
           {milestones.map((m, i) => (
             <MobileMilestone key={m.year} milestone={m} index={i} />
           ))}
