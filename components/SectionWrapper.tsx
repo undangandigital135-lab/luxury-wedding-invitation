@@ -31,17 +31,17 @@ export default function SectionWrapper({
     const ctx = gsap.context(() => {
       gsap.fromTo(
         el,
-        { opacity: 0, y: 60 },
+        { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,
+          duration: 1,
           delay,
-          ease: "power3.out",
+          ease: "power2.out",
           scrollTrigger: {
             trigger: el,
             start: "top 88%",
-            toggleActions: "play none none reverse",
+            once: true,
           },
         }
       );

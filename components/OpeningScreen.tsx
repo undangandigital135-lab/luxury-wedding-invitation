@@ -35,28 +35,19 @@ export default function OpeningScreen({ onOpen, arabic, translation, instruction
   const [isClosing, setIsClosing] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const arabicRef = useRef<HTMLHeadingElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const t = setTimeout(() => setIsReady(true), 600);
+    const t = setTimeout(() => setIsReady(true), 400);
     return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {
     if (!isReady || !arabicRef.current) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(arabicRef.current, { opacity: 0, y: 40, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 2, ease: "power3.out" });
+      gsap.fromTo(arabicRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.5, ease: "power2.out" });
     });
     return () => ctx.revert();
   }, [isReady]);
-
-  useEffect(() => {
-    if (!glowRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.to(glowRef.current, { scale: 1.1, opacity: 0.6, duration: 4, repeat: -1, yoyo: true, ease: "sine.inOut" });
-    });
-    return () => ctx.revert();
-  }, []);
 
   const handleOpen = () => {
     setIsClosing(true);
@@ -76,8 +67,8 @@ export default function OpeningScreen({ onOpen, arabic, translation, instruction
         <div className="absolute inset-0 bg-gradient-to-b from-[#1c0b33] via-[#2B124C] to-[#1c0b33]" />
 
         {/* Ambient glows */}
-        <div ref={glowRef} className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full" style={{ background: "radial-gradient(circle, rgba(212,175,55,0.08) 0%, rgba(82,43,91,0.06) 40%, transparent 70%)" }} />
-        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full" style={{ background: "radial-gradient(circle, rgba(82,43,91,0.08) 0%, transparent 70%)" }} />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.06)_0%,rgba(82,43,91,0.04)_40%,transparent_70%)]" />
+        <div className="absolute bottom-1/3 right-1/4 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,rgba(82,43,91,0.06)_0%,transparent_70%)]" />
 
         <LuxuryPattern variant="islamic" opacity="opacity-[0.03]" />
 
@@ -86,18 +77,8 @@ export default function OpeningScreen({ onOpen, arabic, translation, instruction
 
         {/* Frame */}
         <div className="absolute inset-0 pointer-events-none z-10" aria-hidden="true">
-          <svg className="absolute top-6 left-6 w-16 h-16 text-[#D4AF37]/12" viewBox="0 0 64 64" fill="none">
-            <path d="M2 2h22v3H5v19H2V2z" fill="currentColor" />
-            <path d="M62 2H40v3h19v19h3V2z" fill="currentColor" />
-            <path d="M32 6l7 14-7 7-7-14 7-7z" fill="currentColor" fillOpacity="0.3" />
-          </svg>
-          <svg className="absolute bottom-6 right-6 w-16 h-16 text-[#D4AF37]/12 rotate-180" viewBox="0 0 64 64" fill="none">
-            <path d="M2 2h22v3H5v19H2V2z" fill="currentColor" />
-            <path d="M62 2H40v3h19v19h3V2z" fill="currentColor" />
-            <path d="M32 6l7 14-7 7-7-14 7-7z" fill="currentColor" fillOpacity="0.3" />
-          </svg>
-          <div className="absolute inset-5 border border-[#D4AF37]/8 rounded-3xl" />
-          <div className="absolute inset-7 border border-[#D4AF37]/4 rounded-2xl" />
+          <div className="absolute inset-8 border border-[#D4AF37]/8 rounded-3xl" />
+          <div className="absolute inset-10 border border-[#D4AF37]/4 rounded-2xl" />
         </div>
 
         {/* Content */}
@@ -169,25 +150,19 @@ export default function OpeningScreen({ onOpen, arabic, translation, instruction
           </motion.div>
 
           {/* Open button */}
-          <motion.button
-            initial={{ opacity: 0, y: 25 }}
-            animate={isReady ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 2.7, duration: 1, ease: easeOutExpo }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleOpen}
-            className="group relative px-16 py-4.5 overflow-hidden rounded-full border border-[#D4AF37]/20 bg-white/[0.03] backdrop-blur-sm hover:bg-[#D4AF37]/8 transition-all duration-700 shadow-[0_0_20px_rgba(212,175,55,0.05)]"
-          >
-            <span className="relative z-10 text-[#F5E6CA]/60 text-sm tracking-[0.3em] uppercase group-hover:text-[#F5E6CA]/90 transition-colors duration-500 font-cinzel">
-              {instruction}
-            </span>
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/8 to-transparent"
-              initial={{ x: "-100%" }}
-              animate={{ x: "400%" }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
-            />
-          </motion.button>
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={isReady ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 2.5, duration: 0.8, ease: easeOutExpo }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={handleOpen}
+              className="group relative px-14 py-4 overflow-hidden rounded-full border border-[#D4AF37]/20 bg-white/[0.03] hover:bg-[#D4AF37]/8 transition-all duration-400 shadow-[0_0_15px_rgba(212,175,55,0.04)]"
+            >
+              <span className="relative z-10 text-[#F5E6CA]/60 text-sm tracking-[0.3em] uppercase group-hover:text-[#F5E6CA]/90 transition-colors duration-400 font-cinzel">
+                {instruction}
+              </span>
+            </motion.button>
         </motion.div>
 
         {/* Corner flowers */}

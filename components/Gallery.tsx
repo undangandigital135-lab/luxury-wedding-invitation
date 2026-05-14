@@ -19,30 +19,27 @@ interface GalleryProps {
 function GalleryImageCard({ image, index, onClick }: { image: GalleryImage; index: number; onClick: () => void }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95, filter: "blur(5px)" }}
-      whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 1, delay: index * 0.15, ease: "easeOut" }}
+      transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
       onClick={onClick}
-      className="group relative aspect-[4/5] rounded-t-[50px] rounded-b-xl overflow-hidden cursor-pointer border-x border-t border-[#D4AF37]/20 hover:border-[#D4AF37]/40 shadow-[0_15px_30px_rgba(28,11,51,0.5)] transition-all duration-700 bg-[#1c0b33]"
+      className="group relative aspect-[4/5] rounded-t-[50px] rounded-b-xl overflow-hidden cursor-pointer border-x border-t border-[#D4AF37]/20 hover:border-[#D4AF37]/40 shadow-[0_10px_20px_rgba(28,11,51,0.4)] transition-all duration-300 bg-[#1c0b33]"
       role="button" tabIndex={0} aria-label={`View ${image.alt}`}
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onClick(); }}
     >
-      <div className="absolute inset-1 rounded-t-[48px] rounded-b-lg border border-[#D4AF37]/10 group-hover:border-[#D4AF37]/20 transition-colors duration-700 z-10 pointer-events-none" />
-      
-      {/* Overlay Glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 pointer-events-none" />
+      <div className="absolute inset-1 rounded-t-[48px] rounded-b-lg border border-[#D4AF37]/10 group-hover:border-[#D4AF37]/20 transition-colors duration-300 z-10 pointer-events-none" />
       
       {/* Image Placeholder */}
       <div className="w-full h-full bg-gradient-to-b from-white/[0.03] to-white/[0.01] flex items-center justify-center relative z-0">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-[#D4AF37]/20 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-[#D4AF37]/20">
           <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><polyline points="21 15 16 10 5 21" />
         </svg>
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-[#1c0b33] via-[#1c0b33]/40 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-700 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1c0b33] via-[#1c0b33]/40 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300 z-10" />
       
-      <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-6 group-hover:translate-y-0 transition-transform duration-700 z-20 text-center">
+      <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-5 group-hover:translate-y-0 transition-transform duration-300 z-20 text-center">
         {image.caption && <p className="text-[#F5E6CA] text-sm md:text-base font-cormorant italic drop-shadow-md">{image.caption}</p>}
         <div className="w-8 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent mx-auto mt-3 mb-2" />
         <p className="text-[#D4AF37]/60 text-[10px] tracking-[0.3em] font-cinzel">{String(index + 1).padStart(2, "0")}</p>
@@ -62,8 +59,7 @@ export default function Gallery({ title, subtitle, images }: GalleryProps) {
       style={{ background: "linear-gradient(to bottom, #1c0b33, #2B124C)" }}
     >
       {/* Cinematic Lighting */}
-      <SectionGlow color="rgba(212,175,55,0.06)" size="w-[800px] h-[800px]" className="top-1/4 left-1/2 -translate-x-1/2" />
-      <SectionGlow color="rgba(82,43,91,0.08)" size="w-[600px] h-[600px]" className="bottom-0 left-0" />
+      <SectionGlow color="rgba(212,175,55,0.04)" size="w-[600px] h-[600px]" className="top-1/4 left-1/2 -translate-x-1/2" />
       <LuxuryPattern variant="islamic" opacity="opacity-[0.03]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-10 lg:px-16 pt-10">

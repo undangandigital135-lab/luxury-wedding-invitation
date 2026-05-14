@@ -56,7 +56,7 @@ export default function RSVP({
     <SectionWrapper id="rsvp" className={`relative overflow-hidden ${sectionPadding.py}`}
       style={{ background: "linear-gradient(to bottom, #2B124C, #1c0b33)" }}
     >
-      <SectionGlow color="rgba(212,175,55,0.06)" size="w-[800px] h-[800px]" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      <SectionGlow color="rgba(212,175,55,0.04)" size="w-[600px] h-[600px]" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
       <LuxuryPattern variant="islamic" opacity="opacity-[0.03]" />
 
       <div className="relative z-10 max-w-2xl mx-auto px-6 md:px-10 lg:px-16 pt-10">

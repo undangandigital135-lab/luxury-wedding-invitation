@@ -31,8 +31,7 @@ export default function DigitalGift({ title, subtitle, intro, message, bankName,
     <SectionWrapper id="gift" className={`relative overflow-hidden ${sectionPadding.py}`}
       style={{ background: "linear-gradient(to bottom, #1c0b33, #2B124C)" }}
     >
-      <SectionGlow color="rgba(212,175,55,0.08)" size="w-[800px] h-[800px]" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-      <SectionGlow color="rgba(82,43,91,0.06)" size="w-[600px] h-[600px]" className="bottom-0 right-0" />
+      <SectionGlow color="rgba(212,175,55,0.05)" size="w-[500px] h-[500px]" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
       <LuxuryPattern variant="islamic" opacity="opacity-[0.03]" />
 
       <div className="relative z-10 max-w-lg mx-auto px-6 md:px-8 pt-10">

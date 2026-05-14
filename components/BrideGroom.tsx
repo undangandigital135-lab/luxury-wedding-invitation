@@ -46,22 +46,21 @@ function PersonCard({ person, index }: { person: PersonData; index: number }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="flex flex-col items-center text-center relative p-8 md:p-12 rounded-[40px] bg-white/[0.01] border border-white/[0.03] shadow-[0_0_50px_rgba(43,18,76,0.5)] backdrop-blur-sm"
+      className="flex flex-col items-center text-center relative p-8 md:p-12 rounded-[40px] bg-white/[0.01] border border-white/[0.03] shadow-[0_0_30px_rgba(43,18,76,0.4)]"
     >
       {/* Decorative inner border */}
       <div className="absolute inset-4 rounded-[28px] border border-[#D4AF37]/10 pointer-events-none" />
 
       <div className="relative w-56 h-56 md:w-72 md:h-72 mb-12 group">
         {/* Cinematic glow ring */}
-        <div className="absolute -inset-8 rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.15)_0%,transparent_70%)] opacity-50 group-hover:opacity-100 blur-2xl transition-all duration-1000" />
+        <div className="absolute -inset-6 rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.1)_0%,transparent_70%)] opacity-40 group-hover:opacity-80 blur-xl transition-all duration-500" />
         
-        {/* Intricate layered borders */}
-        <div className="absolute inset-0 rounded-full border-[2px] border-[#D4AF37]/10 group-hover:border-[#D4AF37]/40 transition-colors duration-1000 shadow-[0_0_30px_rgba(212,175,55,0.1)_inset]" />
-        <div className="absolute inset-[8px] rounded-full border-[1px] border-[#D4AF37]/20 border-dashed animate-[spin_60s_linear_infinite]" />
-        <div className="absolute inset-[16px] rounded-full border-[1px] border-[#D4AF37]/10" />
+        {/* Layered borders */}
+        <div className="absolute inset-0 rounded-full border-[2px] border-[#D4AF37]/10 group-hover:border-[#D4AF37]/30 transition-colors duration-500" />
+        <div className="absolute inset-[8px] rounded-full border-[1px] border-[#D4AF37]/15" />
         
         {/* Avatar background */}
-        <div className="absolute inset-[24px] rounded-full bg-gradient-to-br from-[#2B124C] via-[#3D1A5A] to-[#1c0b33] flex items-center justify-center overflow-hidden shadow-[0_0_40px_rgba(212,175,55,0.1)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.2)] transition-all duration-1000">
+        <div className="absolute inset-[16px] rounded-full bg-gradient-to-br from-[#2B124C] via-[#3D1A5A] to-[#1c0b33] flex items-center justify-center overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.08)] group-hover:shadow-[0_0_40px_rgba(212,175,55,0.15)] transition-all duration-500">
           <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-[#D4AF37]/30 drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">
             <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
             <circle cx="12" cy="7" r="4" />
@@ -97,8 +96,6 @@ export default function BrideGroom({ sectionTitle, sectionSubtitle, bride, groom
       
       {/* Cinematic Lighting */}
       <SectionGlow color="rgba(212,175,55,0.06)" size="w-[800px] h-[800px]" className="top-1/4 left-1/2 -translate-x-1/2" />
-      <SectionGlow color="rgba(133,79,108,0.08)" size="w-[600px] h-[600px]" className="bottom-0 left-0" />
-      <SectionGlow color="rgba(82,43,91,0.08)" size="w-[600px] h-[600px]" className="top-1/3 right-0" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-10 lg:px-16 pt-20">
         <div className="text-center mb-32 md:mb-48">

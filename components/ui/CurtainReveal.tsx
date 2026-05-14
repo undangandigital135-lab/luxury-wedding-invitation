@@ -9,9 +9,9 @@ export default function CurtainReveal() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.2 });
-      tl.to(leftRef.current, { x: "-100%", duration: 1.8, ease: "power3.inOut" }, 0);
-      tl.to(rightRef.current, { x: "100%", duration: 1.8, ease: "power3.inOut" }, 0);
+      const tl = gsap.timeline({ delay: 0.1 });
+      tl.to(leftRef.current, { x: "-100%", duration: 1.2, ease: "power2.inOut" }, 0);
+      tl.to(rightRef.current, { x: "100%", duration: 1.2, ease: "power2.inOut" }, 0);
     });
     return () => ctx.revert();
   }, []);

@@ -41,7 +41,7 @@ function MilestoneCard({ milestone, index, isLeft }: { milestone: Milestone; ind
     const el = ref.current;
     if (!el) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(el, { opacity: 0, x: isLeft ? -50 : 50, filter: "blur(5px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 1.5, delay: index * 0.2, ease: "power4.out", scrollTrigger: { trigger: el, start: "top 80%", toggleActions: "play none none reverse" } });
+      gsap.fromTo(el, { opacity: 0, x: isLeft ? -30 : 30 }, { opacity: 1, x: 0, duration: 1.2, delay: index * 0.15, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%", once: true } });
     });
     return () => ctx.revert();
   }, [isLeft, index]);
@@ -89,7 +89,7 @@ function MobileMilestone({ milestone, index }: { milestone: Milestone; index: nu
     const el = ref.current;
     if (!el) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(el, { opacity: 0, x: 30, filter: "blur(5px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 1.2, delay: index * 0.15, ease: "power4.out", scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" } });
+      gsap.fromTo(el, { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 1, delay: index * 0.12, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 88%", once: true } });
     });
     return () => ctx.revert();
   }, [index]);
@@ -114,8 +114,7 @@ export default function LoveStory({ title, subtitle, intro, milestones }: LoveSt
     <SectionWrapper id="love-story" className={`relative overflow-hidden ${sectionPadding.py}`}
       style={{ background: "linear-gradient(to bottom, #2B124C, #1c0b33)" }}
     >
-      <SectionGlow color="rgba(212,175,55,0.06)" size="w-[800px] h-[800px]" className="top-1/4 left-0" />
-      <SectionGlow color="rgba(133,79,108,0.08)" size="w-[600px] h-[600px]" className="bottom-1/3 right-0" />
+      <SectionGlow color="rgba(212,175,55,0.04)" size="w-[600px] h-[600px]" className="top-1/4 left-0" />
       <LuxuryPattern variant="islamic" opacity="opacity-[0.03]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 lg:px-16 pt-10">

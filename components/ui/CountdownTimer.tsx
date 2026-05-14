@@ -1,10 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import gsap from "gsap";
 import { getTimeRemaining } from "@/lib/utils";
-import { countUnitVariants } from "@/lib/animations";
 
 interface CountdownTimerProps {
   weddingDateISO: string;
@@ -12,22 +10,19 @@ interface CountdownTimerProps {
   className?: string;
 }
 
-function FlipUnit({ value, label, index }: { value: number; label: string; index: number }) {
-  const prevRef = useRef(value);
-  const flipRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (prevRef.current !== value && flipRef.current) {
-      gsap.fromTo(flipRef.current, { rotateX: -90, opacity: 0 }, { rotateX: 0, opacity: 1, duration: 0.5, ease: "back.out(1.7)" });
-      prevRef.current = value;
-    }
-  }, [value]);
-
+function CountUnit({ value, label, index }: { value: number; label: string; index: number }) {
   return (
-    <motion.div custom={index} variants={countUnitVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: 0.2 + index * 0.1, ease: [0.33, 1, 0.68, 1] }}
+      className="flex flex-col items-center"
+    >
       <div className="relative w-20 h-20 md:w-28 md:h-28 flex items-center justify-center">
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-[#D4AF37]/5 to-white/[0.01] border border-[#D4AF37]/15" />
         <div className="absolute inset-2 rounded-xl bg-gradient-to-b from-[#D4AF37]/10 to-transparent opacity-50" />
-        <div className="relative z-10 flex items-center justify-center" ref={flipRef}>
+        <div className="relative z-10 flex items-center justify-center">
           <span className="text-3xl md:text-5xl font-cinzel text-[#D4AF37] tabular-nums tracking-tight gold-glow">
             {String(value).padStart(2, "0")}
           </span>
@@ -56,7 +51,7 @@ export default function CountdownTimer({ weddingDateISO, labels, className = "" 
   return (
     <div className={`flex items-center justify-center gap-4 md:gap-8 lg:gap-12 ${className}`}>
       {units.map((unit, i) => (
-        <FlipUnit key={unit.label} value={unit.value} label={unit.label} index={i} />
+        <CountUnit key={unit.label} value={unit.value} label={unit.label} index={i} />
       ))}
     </div>
   );

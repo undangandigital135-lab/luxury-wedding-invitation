@@ -23,7 +23,7 @@ export default function ClosingFooter({ arabicPrayer, prayerTranslation, closing
     const el = contentRef.current;
     if (!el) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(el.children, { opacity: 0, y: 50, filter: "blur(5px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 1.8, stagger: 0.3, ease: "power4.out", scrollTrigger: { trigger: sectionRef.current, start: "top 80%", toggleActions: "play none none reverse" } });
+      gsap.fromTo(el.children, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.2, stagger: 0.2, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 85%", once: true } });
     });
     return () => ctx.revert();
   }, []);
@@ -31,8 +31,8 @@ export default function ClosingFooter({ arabicPrayer, prayerTranslation, closing
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1c0b33]">
       {/* Background Cinematic Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] md:w-[1200px] h-[1200px] rounded-full bg-[radial-gradient(circle,rgba(82,43,91,0.5)_0%,rgba(43,18,76,0)_70%)] blur-[120px] z-0 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.15)_0%,transparent_60%)] blur-[100px] z-0 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] md:w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,rgba(82,43,91,0.35)_0%,rgba(43,18,76,0)_70%)] blur-[50px] z-0 pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.1)_0%,transparent_60%)] blur-[40px] z-0 pointer-events-none" />
 
       <LuxuryPattern variant="islamic" opacity="opacity-[0.04]" />
 

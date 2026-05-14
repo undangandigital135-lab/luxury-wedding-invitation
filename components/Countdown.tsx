@@ -21,7 +21,7 @@ export default function Countdown({ title, subtitle, labels, message, weddingDat
     <SectionWrapper id="countdown" className={`relative overflow-hidden ${sectionPadding.py}`}
       style={{ background: "linear-gradient(to bottom, #1c0b33, #2B124C)" }}
     >
-      <SectionGlow color="rgba(212,175,55,0.08)" size="w-[900px] h-[900px]" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      <SectionGlow color="rgba(212,175,55,0.06)" size="w-[600px] h-[600px]" className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
       <LuxuryPattern variant="islamic" opacity="opacity-[0.03]" />
 
       {/* Ornate Background Frame */}
@@ -41,7 +41,7 @@ export default function Countdown({ title, subtitle, labels, message, weddingDat
 
         <div className="relative inline-block">
           {/* Subtle glow behind timer */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.15)_0%,transparent_60%)] blur-[40px] -z-10" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(212,175,55,0.1)_0%,transparent_60%)] blur-[20px] -z-10" />
           <CountdownTimer weddingDateISO={weddingDateISO} labels={labels} />
         </div>
 

@@ -51,26 +51,25 @@ function EventCard({ event, index }: { event: Event; index: number }) {
     const el = ref.current;
     if (!el) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(el, { opacity: 0, y: 60, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 1.5, delay: index * 0.3, ease: "power4.out", scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" } });
+      gsap.fromTo(el, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.2, delay: index * 0.2, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 88%", once: true } });
     });
     return () => ctx.revert();
   }, [index]);
 
   return (
-    <div ref={ref} className="group relative p-8 md:p-12 lg:p-14 rounded-t-[40px] rounded-b-[10px] border-x border-t border-[#D4AF37]/20 bg-gradient-to-b from-white/[0.03] to-transparent backdrop-blur-md opacity-0 hover:border-[#D4AF37]/40 hover:bg-white/[0.05] transition-all duration-1000 shadow-[0_20px_50px_rgba(28,11,51,0.5)] mt-10">
+    <div ref={ref} className="group relative p-8 md:p-12 lg:p-14 rounded-t-[40px] rounded-b-[10px] border-x border-t border-[#D4AF37]/20 bg-gradient-to-b from-white/[0.03] to-transparent backdrop-blur-md opacity-0 hover:border-[#D4AF37]/40 transition-all duration-500 shadow-[0_20px_50px_rgba(28,11,51,0.5)] mt-10">
       {/* Decorative Ornaments */}
-      <svg className="absolute top-4 left-4 w-12 h-12 text-[#D4AF37]/30 transition-colors duration-1000 group-hover:text-[#D4AF37]/60" viewBox="0 0 80 80" fill="none">
+      <svg className="absolute top-4 left-4 w-12 h-12 text-[#D4AF37]/30 transition-colors duration-500 group-hover:text-[#D4AF37]/60" viewBox="0 0 80 80" fill="none">
         <path d="M4 4h24v3H7v21H4V4z" fill="currentColor" />
         <path d="M40 8l8 16-8 8-8-16 8-8z" fill="currentColor" fillOpacity="0.3" />
       </svg>
-      <svg className="absolute top-4 right-4 w-12 h-12 text-[#D4AF37]/30 transition-colors duration-1000 group-hover:text-[#D4AF37]/60 rotate-90" viewBox="0 0 80 80" fill="none">
+      <svg className="absolute top-4 right-4 w-12 h-12 text-[#D4AF37]/30 transition-colors duration-500 group-hover:text-[#D4AF37]/60 rotate-90" viewBox="0 0 80 80" fill="none">
         <path d="M4 4h24v3H7v21H4V4z" fill="currentColor" />
         <path d="M40 8l8 16-8 8-8-16 8-8z" fill="currentColor" fillOpacity="0.3" />
       </svg>
 
-      <div className="absolute inset-0 rounded-t-[40px] rounded-b-[10px] bg-gradient-to-b from-[#D4AF37]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
-      <div className="absolute top-0 left-[20%] right-[20%] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
-      <div className="absolute -inset-[1px] rounded-t-[40px] rounded-b-[10px] bg-gradient-to-b from-[#D4AF37]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none -z-10 shadow-[0_0_30px_rgba(212,175,55,0.1)]" />
+      <div className="absolute top-0 left-[20%] right-[20%] h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute -inset-[1px] rounded-t-[40px] rounded-b-[10px] bg-gradient-to-b from-[#D4AF37]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none -z-10" />
 
       <div className="relative z-10 pt-4">
         <div className="flex flex-col items-center gap-4 mb-12 text-center">
@@ -120,8 +119,7 @@ export default function EventDetails({ title, subtitle, intro, events }: EventDe
     <SectionWrapper id="event-details" className={`relative overflow-hidden ${sectionPadding.py}`}
       style={{ background: "linear-gradient(to bottom, #1A0A30, #1c0b33)" }}
     >
-      <SectionGlow color="rgba(212,175,55,0.06)" size="w-[800px] h-[800px]" className="bottom-1/4 right-0" />
-      <SectionGlow color="rgba(82,43,91,0.08)" size="w-[600px] h-[600px]" className="top-1/4 left-0" />
+      <SectionGlow color="rgba(212,175,55,0.04)" size="w-[600px] h-[600px]" className="bottom-1/4 right-0" />
       <LuxuryPattern variant="islamic" opacity="opacity-[0.03]" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-10 lg:px-16 pt-16">
