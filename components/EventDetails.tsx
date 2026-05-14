@@ -57,7 +57,7 @@ function EventCard({ event, index }: { event: Event; index: number }) {
   }, [index]);
 
   return (
-    <div ref={ref} className="group relative p-8 md:p-12 lg:p-14 rounded-t-[40px] rounded-b-[10px] border-x border-t border-[#D4AF37]/20 bg-gradient-to-b from-white/[0.03] to-transparent backdrop-blur-md opacity-0 hover:border-[#D4AF37]/40 transition-all duration-500 shadow-[0_20px_50px_rgba(28,11,51,0.5)] mt-10">
+    <div ref={ref} className="group relative p-8 md:p-12 lg:p-14 rounded-t-[40px] rounded-b-[10px] border-x border-t border-[#D4AF37]/20 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 hover:border-[#D4AF37]/40 transition-all duration-500 shadow-[0_20px_50px_rgba(28,11,51,0.5)] mt-10 gpu">
       {/* Decorative Ornaments */}
       <svg className="absolute top-4 left-4 w-12 h-12 text-[#D4AF37]/30 transition-colors duration-500 group-hover:text-[#D4AF37]/60" viewBox="0 0 80 80" fill="none">
         <path d="M4 4h24v3H7v21H4V4z" fill="currentColor" />
@@ -125,18 +125,18 @@ export default function EventDetails({ title, subtitle, intro, events }: EventDe
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-10 lg:px-16 pt-16">
         <div className="text-center mb-20 md:mb-28">
           <motion.p variants={subtitleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.4em] uppercase mb-4 font-cinzel">
+            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.4em] uppercase mb-4 font-cinzel gpu">
             {subtitle}
           </motion.p>
           <motion.h2 variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-4xl md:text-6xl lg:text-7xl font-cinzel text-[#D4AF37] tracking-[0.02em] gold-glow">
+            className="text-4xl md:text-6xl lg:text-7xl font-cinzel text-[#D4AF37] tracking-[0.02em] gold-glow gpu">
             {title}
           </motion.h2>
           
-          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.2, delay: 0.3 }} className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-8 mb-6" />
+          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }} className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-8 mb-6 gpu" />
           
-          <motion.p initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.5 }}
-            className="text-[#F5E6CA]/60 text-base md:text-lg max-w-2xl mx-auto font-cormorant leading-[1.8] italic">
+          <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-[#F5E6CA]/60 text-base md:text-lg max-w-2xl mx-auto font-cormorant leading-[1.8] italic gpu">
             {intro}
           </motion.p>
         </div>

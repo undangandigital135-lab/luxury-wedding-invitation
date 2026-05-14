@@ -60,8 +60,8 @@ export default function OpeningScreen({ onOpen, arabic, translation, instruction
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#1c0b33]"
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#1c0b33] gpu"
       >
         <div className="absolute inset-0 bg-gradient-to-b from-[#1c0b33] via-[#2B124C] to-[#1c0b33]" />
 
@@ -85,8 +85,8 @@ export default function OpeningScreen({ onOpen, arabic, translation, instruction
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ delay: 0.4, duration: 1.5, ease: [0.19, 1, 0.22, 1] }}
-            className="w-28 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-10"
+            transition={{ delay: 0.4, duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
+            className="w-28 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-10 gpu"
           />
 
           <h1 ref={arabicRef} className="text-3xl md:text-5xl lg:text-6xl text-[#D4AF37] leading-relaxed tracking-wider opacity-0 font-arabic gold-glow">
@@ -94,20 +94,20 @@ export default function OpeningScreen({ onOpen, arabic, translation, instruction
           </h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={isReady ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="mt-6 text-sm md:text-base text-[#F5E6CA]/55 font-light tracking-wider max-w-md font-cormorant"
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="mt-6 text-sm md:text-base text-[#F5E6CA]/55 font-light tracking-wider max-w-md font-cormorant gpu"
           >
             {translation}
           </motion.p>
 
           {guestName && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={isReady ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1, duration: 0.8 }}
-              className="mt-8"
+              transition={{ delay: 0.9, duration: 0.6 }}
+              className="mt-8 gpu"
             >
               <p className="text-[#D4AF37]/30 text-xs tracking-[0.4em] uppercase mb-1 font-cinzel">
                 {guestTitle || "Untuk"}
@@ -121,29 +121,29 @@ export default function OpeningScreen({ onOpen, arabic, translation, instruction
           <motion.div
             initial={{ scaleX: 0 }}
             animate={isReady ? { scaleX: 1 } : {}}
-            transition={{ delay: 1.2, duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
-            className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/25 to-transparent my-10"
+            transition={{ delay: 1.1, duration: 1, ease: [0.19, 1, 0.22, 1] }}
+            className="w-20 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/25 to-transparent my-10 gpu"
           />
 
-          <CoupleIllustration delay={1.4} />
+          <CoupleIllustration delay={1.2} />
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={isReady ? { opacity: 1 } : {}}
-            transition={{ delay: 1.6, duration: 0.5 }}
-            className="mt-8 mb-10"
+            transition={{ delay: 1.4, duration: 0.4 }}
+            className="mt-8 mb-10 gpu"
           >
             <LoadingBar />
           </motion.div>
 
           <motion.button
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={isReady ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 2, duration: 0.8, ease: easeOutExpo }}
+            transition={{ delay: 1.8, duration: 0.6, ease: easeOutExpo }}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={handleOpen}
-            className="group relative px-12 py-3.5 overflow-hidden rounded-full border border-[#D4AF37]/20 bg-white/[0.03] hover:bg-[#D4AF37]/8 transition-all duration-400"
+            className="group relative px-12 py-3.5 overflow-hidden rounded-full border border-[#D4AF37]/20 bg-white/[0.03] hover:bg-[#D4AF37]/8 transition-all duration-400 gpu"
           >
             <span className="relative z-10 text-[#F5E6CA]/60 text-sm tracking-[0.3em] uppercase group-hover:text-[#F5E6CA]/90 transition-colors duration-400 font-cinzel">
               {instruction}

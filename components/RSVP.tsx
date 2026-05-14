@@ -62,22 +62,22 @@ export default function RSVP({
       <div className="relative z-10 max-w-2xl mx-auto px-6 md:px-10 lg:px-16 pt-10">
         <div className="text-center mb-16 md:mb-24">
           <motion.p variants={subtitleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.5em] uppercase mb-6 font-cinzel drop-shadow-sm">
+            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.5em] uppercase mb-6 font-cinzel gpu">
             {subtitle}
           </motion.p>
           <motion.h2 variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-5xl md:text-6xl lg:text-7xl font-cinzel text-[#D4AF37] tracking-[0.02em] mb-6 gold-glow pb-2">
+            className="text-5xl md:text-6xl lg:text-7xl font-cinzel text-[#D4AF37] tracking-[0.02em] mb-6 gold-glow pb-2 gpu">
             {title}
           </motion.h2>
           
-          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.5 }} className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-8 mb-8" />
+          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }} className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-8 mb-8 gpu" />
           
-          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.8 }}
-            className="text-[#F5E6CA]/60 text-base md:text-xl leading-[1.8] font-cormorant italic drop-shadow-md">
+          <motion.p initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-[#F5E6CA]/60 text-base md:text-lg leading-[1.8] font-cormorant italic gpu">
             {intro}
           </motion.p>
-          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 1 }}
-            className="text-[#D4AF37]/60 text-[10px] md:text-xs mt-8 tracking-[0.3em] font-cinzel uppercase">
+          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-[#D4AF37]/60 text-[10px] md:text-xs mt-8 tracking-[0.3em] font-cinzel uppercase gpu">
             {deadlinelabel} <span className="text-[#D4AF37]">{deadline}</span>
           </motion.p>
         </div>
@@ -100,8 +100,8 @@ export default function RSVP({
               </button>
             </motion.div>
           ) : (
-            <motion.form initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-              onSubmit={handleSubmit} className="space-y-8 relative z-10" noValidate>
+            <motion.form initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              onSubmit={handleSubmit} className="space-y-8 relative z-10 gpu" noValidate>
               
               <FormField label={nameLabel}>
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder={namePlaceholder} required aria-required="true"
@@ -134,7 +134,7 @@ export default function RSVP({
 
               <div className="pt-6">
                 <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-                  className="w-full py-5 rounded-xl bg-gradient-to-r from-[#D4AF37]/20 to-[#D4AF37]/10 border border-[#D4AF37]/40 text-[#D4AF37] text-[10px] md:text-xs tracking-[0.3em] uppercase hover:from-[#D4AF37]/30 hover:to-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-500 font-cinzel shadow-[0_0_20px_rgba(212,175,55,0.1)]">
+                  className="w-full py-5 rounded-xl bg-gradient-to-r from-[#D4AF37]/20 to-[#D4AF37]/10 border border-[#D4AF37]/40 text-[#D4AF37] text-[10px] md:text-xs tracking-[0.3em] uppercase hover:from-[#D4AF37]/30 hover:to-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-500 font-cinzel gpu">
                   {submitText}
                 </motion.button>
               </div>

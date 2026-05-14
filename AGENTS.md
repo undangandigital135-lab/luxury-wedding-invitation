@@ -20,7 +20,7 @@ This is a **static wedding invitation landing page** — NOT a multi-page app, d
 
 ```
 app/page.tsx          ← entrypoint (client component, orchestrates all sections)
-app/layout.tsx        ← root layout (fonts: Cinzel, Cormorant Garamond, Plus Jakarta Sans, Geist)
+app/layout.tsx        ← root layout (fonts: Cinzel, Cormorant Garamond, Plus Jakarta Sans)
 app/globals.css       ← Tailwind v4 + custom theme
 data/wedding.ts       ← ALL editable content (single source of truth)
 components/           ← section components
@@ -46,49 +46,46 @@ Guest name: `?to=NamaTamu` query param.
 
 **Do NOT use** old gold `#C9A84C` — replaced by `#D4AF37` everywhere.
 
-CSS class `.gold-glow` adds `text-shadow: 0 0 40px rgba(212,175,55,0.15)`.
+## Animation system (UNIFIED)
 
-## Framework & toolchain quirks
+**Framer Motion only** for all entrance/scroll animations. GSAP reserved exclusively for:
+- `CurtainReveal` (SVG morph multi-panel 3D curtain)
+- `CurtainReveal` secondary wind oscillation
 
-- **Tailwind v4** — uses `@import "tailwindcss"` + `@theme inline {}` (NOT `@tailwind` directives or `tailwind.config`). Theme is defined in `globals.css` via `@theme inline`.
-- **PostCSS** — only `@tailwindcss/postcss` plugin.
-- **Turbopack** — Next.js uses Turbopack for both dev and production builds.
-- **Path alias** — `@/` maps to project root (tsconfig paths).
-- **TypeScript** — strict mode, `jsx: react-jsx`, `moduleResolution: bundler`.
-- **ESLint** — flat config (`eslint.config.mjs`), no `.eslintrc`. `npm run lint` is the only command.
+Scroll reveals use `motion.div` + `whileInView` with `viewport={{ once: true }}` everywhere. No GSAP ScrollTrigger on section wrappers.
 
-## Animation patterns
+Key easing: `easeOutExpo = [0.19, 1, 0.22, 1]`.
 
-Two animation libraries coexist:
+## Performance rules (CRITICAL)
 
-| Library | Used for |
-|---|---|
-| **GSAP + ScrollTrigger** | Section fade-up reveals (`SectionWrapper`), parallax layers (`Hero`), countdown flip, timeline milestones, footer stagger, ambient orb drift, music bars |
-| **Framer Motion** | Entrance animations (all `motion.div` in section components), `whileInView` reveals, `AnimatePresence` (opening screen, lightbox) |
-
-Key easing: `easeOutExpo = [0.19, 1, 0.22, 1]` used consistently in `lib/animations.ts`.
-
-GSAP `ScrollTrigger` start: `"top 88%"` for sections. `"power3.out"` default easing.
+- All animated elements MUST use `.gpu` class for `will-change: transform, opacity`
+- Do NOT use `backdrop-blur` on any GSAP-animated element
+- Do NOT animate `filter: blur()` — use opacity + transform only
+- Do NOT use `mix-blend-overlay` or `feTurbulence` SVG filters (GPU killers)
+- All infinite CSS animations limited to max 6 elements
+- Prefer CSS `transform` + `opacity` animations over JS-driven where possible
+- Mount sections with staggered delay to avoid frame drops (see page.tsx)
 
 ## Component conventions
 
 - All section components are `"use client"`.
-- `SectionWrapper` wraps every section with GSAP fade-up + ScrollTrigger. Pass `style` prop for per-section gradient backgrounds.
-- `ErrorBoundary` wraps every section in `page.tsx` — prevents one crash from breaking the whole page.
+- `SectionWrapper` wraps every section — uses Framer Motion `whileInView` for scroll reveal.
+- `ErrorBoundary` wraps every section in `page.tsx`.
 - Non-critical UI (`SectionNav`, `Wishes`, `SocialShare`) is lazy-loaded via `next/dynamic` + `<Suspense>`.
-- Decorative overlays (`LuxuryPattern`, `GrainTexture`, `IslamicOrnaments`, `AnimatedBackground`) are z-indexed behind content.
+- Use `.gpu` class on all `motion.div` elements that animate.
 
 ## What not to do
 
 - Do NOT add admin panels, dashboards, auth, login, CMS, analytics, or database.
 - Do NOT use old gold `#C9A84C`.
-- Do NOT import `AnimatedSection` — it was removed (dead code).
+- Do NOT import `AnimatedSection` — removed (dead code).
 - Do NOT call `Math.random` in render — use deterministic values or `useMemo`.
-- Do NOT use GSAP easings (`power3.out`) inside Framer Motion `transition` — use cubic-bezier arrays.
+- Do NOT mix GSAP scroll + Framer scroll on same element.
+- Do NOT use `feTurbulence` SVG filters — they kill mobile GPU.
 
 ## Data model
 
-Edit `data/wedding.ts` to change all content. The file exports a `WeddingData` interface and a `weddingData` object. Every string visible on the page comes from this file — names, dates, verses, bank accounts, event details, etc.
+Edit `data/wedding.ts` to change all content. Single source of truth for every visible string.
 
 Gallery images are SVG placeholders by default. Replace with real images in `public/` and update `gallery.images[].src`.
 
@@ -100,15 +97,15 @@ Audio file goes in `public/audio/music.mp3`. Update path in `audio.src`.
 wedding-invitation/
 ├── app/
 │   ├── page.tsx          ← main entry (client component)
-│   ├── layout.tsx        ← fonts, metadata, structured data
+│   ├── layout.tsx        ← fonts, metadata
 │   └── globals.css       ← Tailwind, theme, print, reduced-motion
 ├── components/
-│   ├── ui/               ← GlowOrb, FloatingParticles, LuxuryPattern, ArabesqueOrnament,
-│   │                        GoldLineAccent, GrainTexture, SectionGlow, OrnamentFrame,
-│   │                        IslamicDivider, CountdownTimer, GalleryLightbox, MusicPlayer
-│   ├── SectionWrapper.tsx  ← GSAP scroll-reveal wrapper
-│   ├── OpeningScreen.tsx   ← Bismillah overlay
-│   ├── Hero.tsx            ← Parallax hero with particles
+│   ├── ui/               ← GlowOrb, FloatingParticles, LuxuryPattern,
+│   │                        GrainTexture, SectionGlow, CountdownTimer,
+│   │                        GalleryLightbox, MusicPlayer, CurtainReveal
+│   ├── SectionWrapper.tsx  ← Framer Motion scroll-reveal wrapper
+│   ├── OpeningScreen.tsx
+│   ├── Hero.tsx
 │   ├── BrideGroom.tsx
 │   ├── Countdown.tsx
 │   ├── LoveStory.tsx
@@ -116,34 +113,28 @@ wedding-invitation/
 │   ├── Gallery.tsx
 │   ├── RSVP.tsx
 │   ├── DigitalGift.tsx
-│   ├── Wishes.tsx          ← Guest book (localStorage)
+│   ├── Wishes.tsx
 │   ├── ClosingFooter.tsx
-│   ├── JsonLd.tsx          ← Schema.org structured data
-│   ├── ProgressBar.tsx     ← Reading progress
-│   ├── SectionNav.tsx      ← Floating dot nav
-│   ├── SocialShare.tsx     ← WhatsApp + copy link
+│   ├── ProgressBar.tsx
 │   ├── ErrorBoundary.tsx
-│   ├── CurtainReveal.tsx   ← Curtain animation (opening)
-│   ├── FlowerCorner.tsx    ← Growing corner flowers + garland
-│   └── CoupleIllustration.tsx ← Animated couple illustration
-├── data/wedding.ts         ← ALL editable content
+│   ├── CurtainReveal.tsx   ← 3D SVG multi-panel curtain
+│   ├── FlowerCorner.tsx
+│   └── CoupleIllustration.tsx
+├── data/wedding.ts
 ├── lib/
-│   ├── theme.ts            ← Color tokens (verify before using)
-│   ├── spacing.ts          ← Section padding, header margins, grid gaps
-│   ├── animations.ts       ← Framer Motion variants
-│   └── utils.ts            ← cn(), getTimeRemaining(), getGuestName()
-└── hooks/useScrollProgress.ts  ← rAF-throttled scroll %
+│   ├── theme.ts
+│   ├── spacing.ts
+│   ├── animations.ts
+│   └── utils.ts
+└── hooks/useScrollProgress.ts
 ```
 
 ## Critical Implementation Notes
 
-- **Hydration fix**: Guest name from `?to=` parameter requires `useEffect` in `OpeningScreen.tsx` to prevent hydration mismatch (client-only state).
+- **Hydration fix**: Guest name from `?to=` requires `useEffect` in `OpeningScreen.tsx`.
 - **Build**: `npm run build` performs typechecking + Turbopack compilation.
-- **Lint**: `npm run lint` uses flat ESLint config extending `next/core-web-vitals` and TypeScript.
-- **No test runner**: Project relies on manual verification and build/lint checks.
-- **Animation coordination**: GSAP handles scroll-based reveals, Framer Motion handles entrance animations. Do not mix easing systems.
-- **Color enforcement**: Strict prohibition against `#C9A84C`; use `#D4AF37` for all gold elements.
-- **Data centralization**: All textual content (names, dates, verses, bank details) lives in `data/wedding.ts` — single source of truth.
-- **Performance hints**: `.gpu` class adds `will-change: transform, opacity` for GPU-accelerated elements.
-- **Accessibility**: Reduced motion media query disables animations for users who prefer reduced motion.
-- **Print styles**: Special `@media print` rules optimize for physical printing (white background, black text, etc.).
+- **Lint**: `npm run lint` uses flat ESLint config.
+- **No test runner**: Manual verification + build/lint.
+- **GPU class**: Always add `.gpu` to elements that animate (already defined in globals.css).
+- **Reduced motion**: Honored via `@media (prefers-reduced-motion: reduce)`.
+- **Print styles**: Defined in `globals.css` for physical printing.

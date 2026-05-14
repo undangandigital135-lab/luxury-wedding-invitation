@@ -13,11 +13,11 @@ interface CountdownTimerProps {
 function CountUnit({ value, label, index }: { value: number; label: string; index: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: 0.2 + index * 0.1, ease: [0.33, 1, 0.68, 1] }}
-      className="flex flex-col items-center"
+      transition={{ duration: 0.6, delay: 0.15 + index * 0.08, ease: [0.33, 1, 0.68, 1] }}
+      className="flex flex-col items-center gpu"
     >
       <div className="relative w-20 h-20 md:w-28 md:h-28 flex items-center justify-center">
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-[#D4AF37]/5 to-white/[0.01] border border-[#D4AF37]/15" />

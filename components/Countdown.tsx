@@ -96,12 +96,12 @@ export default function Countdown({ title, subtitle, labels, message, weddingDat
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-10 lg:px-16 text-center pt-10">
         <motion.p variants={subtitleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-          className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.5em] uppercase mb-4 font-cinzel">
+          className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.5em] uppercase mb-4 font-cinzel gpu">
           {subtitle}
         </motion.p>
 
         <motion.h2 variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-          className="text-4xl md:text-6xl lg:text-7xl font-cinzel text-[#D4AF37] tracking-[0.02em] mb-16 gold-glow">
+          className="text-4xl md:text-6xl lg:text-7xl font-cinzel text-[#D4AF37] tracking-[0.02em] mb-16 gold-glow gpu">
           {title}
         </motion.h2>
 
@@ -113,11 +113,11 @@ export default function Countdown({ title, subtitle, labels, message, weddingDat
         <AddToCalendarButton />
 
         <motion.p
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.33, 1, 0.68, 1] }}
-          className="text-[#F5E6CA]/60 text-base md:text-xl mt-20 font-cormorant italic max-w-2xl mx-auto leading-[1.8]"
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
+          className="text-[#F5E6CA]/60 text-base md:text-xl mt-20 font-cormorant italic max-w-2xl mx-auto leading-[1.8] gpu"
         >
           {message}
         </motion.p>

@@ -24,7 +24,7 @@ function GalleryImageCard({ image, index, onClick }: { image: GalleryImage; inde
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
       onClick={onClick}
-      className="group relative aspect-[4/5] rounded-t-[50px] rounded-b-xl overflow-hidden cursor-pointer border-x border-t border-[#D4AF37]/20 hover:border-[#D4AF37]/40 shadow-[0_10px_20px_rgba(28,11,51,0.4)] transition-all duration-300 bg-[#1c0b33]"
+      className="group relative aspect-[4/5] rounded-t-[50px] rounded-b-xl overflow-hidden cursor-pointer border-x border-t border-[#D4AF37]/20 hover:border-[#D4AF37]/40 shadow-[0_10px_20px_rgba(28,11,51,0.4)] transition-all duration-300 bg-[#1c0b33] gpu"
       role="button" tabIndex={0} aria-label={`View ${image.alt}`}
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onClick(); }}
     >
@@ -65,14 +65,14 @@ export default function Gallery({ title, subtitle, images }: GalleryProps) {
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-10 lg:px-16 pt-10">
         <div className="text-center mb-24 md:mb-32 lg:mb-40">
           <motion.p variants={subtitleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.5em] uppercase mb-6 font-cinzel drop-shadow-sm">
+            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.5em] uppercase mb-6 font-cinzel gpu">
             {subtitle}
           </motion.p>
           <motion.h2 variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-cinzel text-[#D4AF37] tracking-[0.02em] gold-glow pb-2">
+            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-cinzel text-[#D4AF37] tracking-[0.02em] gold-glow pb-2 gpu">
             {title}
           </motion.h2>
-          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.5 }} className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-10" />
+          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.2, delay: 0.3 }} className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-10 gpu" />
         </div>
 
         <div className="grid grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">

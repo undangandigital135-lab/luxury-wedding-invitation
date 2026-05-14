@@ -11,7 +11,7 @@ export default function ProgressBar() {
       aria-hidden="true"
     >
       <div
-        className="h-full bg-gradient-to-r from-[#D4AF37] via-[#F5E6CA] to-[#D4AF37] transition-transform duration-150 ease-out origin-left"
+        className="h-full bg-gradient-to-r from-[#D4AF37] via-[#F5E6CA] to-[#D4AF37] transition-transform duration-75 ease-out origin-left gpu"
         style={{ transform: `scaleX(${progress})` }}
       />
     </div>

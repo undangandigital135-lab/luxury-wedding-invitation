@@ -35,11 +35,11 @@ function QualityBadge({ text }: { text: string }) {
 function PersonCard({ person, side }: { person: PersonData; side: "left" | "right" }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: side === "left" ? -30 : 30 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }}
-      className={`flex ${side === "left" ? "md:text-right md:items-end" : "md:text-left md:items-start"} flex-col items-center md:items-stretch text-center relative`}
+      transition={{ duration: 0.8, delay: side === "left" ? 0 : 0.15, ease: [0.33, 1, 0.68, 1] }}
+      className={`flex ${side === "left" ? "md:text-right md:items-end" : "md:text-left md:items-start"} flex-col items-center md:items-stretch text-center relative gpu`}
     >
       <div className={`relative w-40 h-40 md:w-56 md:h-56 mb-6 md:mb-8 ${side === "left" ? "md:ml-auto" : "md:mr-auto"}`}>
         <div className="absolute inset-0 rounded-full border-[2px] border-[#D4AF37]/15" />
@@ -82,14 +82,14 @@ export default function BrideGroom({ sectionTitle, sectionSubtitle, bride, groom
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 lg:px-16 pt-20">
         <div className="text-center mb-24 md:mb-32">
           <motion.p variants={subtitleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.5em] uppercase mb-4 font-cinzel">
+            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.5em] uppercase mb-4 font-cinzel gpu">
             {sectionSubtitle}
           </motion.p>
           <motion.h2 variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-4xl md:text-6xl lg:text-7xl font-cinzel text-[#D4AF37] tracking-[0.02em] gold-glow">
+            className="text-4xl md:text-6xl lg:text-7xl font-cinzel text-[#D4AF37] tracking-[0.02em] gold-glow gpu">
             {sectionTitle}
           </motion.h2>
-          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.2, delay: 0.3 }} className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-8" />
+          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }} className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-8 gpu" />
         </div>
 
         {/* Mobile: stacked, Desktop: side-by-side */}
@@ -116,11 +116,11 @@ export default function BrideGroom({ sectionTitle, sectionSubtitle, bride, groom
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.33, 1, 0.68, 1] }}
-          className="text-center mt-24 md:mt-32 max-w-2xl mx-auto"
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.33, 1, 0.68, 1] }}
+          className="text-center mt-24 md:mt-32 max-w-2xl mx-auto gpu"
         >
           <span className="absolute -top-8 -left-2 text-4xl text-[#D4AF37]/10 font-serif leading-none">&quot;</span>
           <p className="text-[#F5E6CA]/60 text-base md:text-lg italic leading-[1.8] font-cormorant px-6">

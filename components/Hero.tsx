@@ -1,13 +1,9 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LuxuryPattern from "@/components/ui/LuxuryPattern";
 import { easeOutExpo } from "@/lib/animations";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface HeroProps {
   greeting: string;
@@ -20,34 +16,6 @@ interface HeroProps {
   scrollHint: string;
 }
 
-const heroParticles = Array.from({ length: 12 }, (_, i) => ({
-  key: i,
-  left: `${(i * 28 + 7) % 100}%`,
-  top: `${(i * 33 + 3) % 100}%`,
-  size: 1.5 + (i % 2) * 0.8,
-  duration: 12 + (i % 3),
-  delay: (i * 0.5) % 5,
-}));
-
-function HeroParticlesGold() {
-  return (
-    <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
-      {heroParticles.map((p) => (
-        <motion.div
-          key={p.key}
-          className="absolute rounded-full"
-          style={{
-            left: p.left, top: p.top, width: p.size, height: p.size,
-            background: "radial-gradient(circle, rgba(212,175,55,0.5) 0%, rgba(212,175,55,0.1) 50%, transparent 80%)",
-          }}
-          animate={{ y: [-15, 15, -15], opacity: [0.1, 0.4, 0.1] }}
-          transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: "easeInOut" }}
-        />
-      ))}
-    </div>
-  );
-}
-
 function ArabesqueGate() {
   return (
     <div className="absolute inset-0 pointer-events-none flex justify-center items-end overflow-hidden z-0" aria-hidden="true">
@@ -55,7 +23,7 @@ function ArabesqueGate() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: easeOutExpo }}
-        className="relative w-[90vw] md:w-full max-w-5xl h-[90vh] border-x border-t border-[#D4AF37]/20 rounded-t-[50vw] md:rounded-t-full"
+        className="relative w-[90vw] md:w-full max-w-5xl h-[90vh] border-x border-t border-[#D4AF37]/20 rounded-t-[50vw] md:rounded-t-full gpu"
       >
         <div className="absolute inset-3 border-x border-t border-[#D4AF37]/12 rounded-t-[50vw] md:rounded-t-full" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] md:w-[350px] h-[150px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.08)_0%,transparent_70%)] blur-lg" />
@@ -70,6 +38,33 @@ function ArabesqueGate() {
   );
 }
 
+function HeroParticlesGold() {
+  const particles = Array.from({ length: 6 }, (_, i) => ({
+    key: i,
+    left: `${(i * 40 + 7) % 100}%`,
+    top: `${(i * 45 + 3) % 100}%`,
+    size: 1.5 + (i % 2) * 0.8,
+    duration: 16 + (i % 4),
+    delay: (i * 0.8) % 5,
+  }));
+
+  return (
+    <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
+      {particles.map((p) => (
+        <div
+          key={p.key}
+          className="absolute rounded-full gpu"
+          style={{
+            left: p.left, top: p.top, width: p.size, height: p.size,
+            background: "radial-gradient(circle, rgba(212,175,55,0.4) 0%, transparent 80%)",
+            animation: `float-up ${p.duration}s ease-in-out ${p.delay}s infinite`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function Hero({ greeting, guestTitle, guestName, title, subtitle, verse, verseReference, scrollHint }: HeroProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -79,53 +74,43 @@ export default function Hero({ greeting, guestTitle, guestName, title, subtitle,
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(contentRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.8, ease: "power2.out" }
-      );
-    });
-    return () => ctx.revert();
-  }, []);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "35%"]);
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#2B124C]">
       <div className="absolute inset-0 bg-gradient-to-b from-[#1c0b33] via-[#2B124C] to-[#1c0b33]" />
 
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] md:w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(82,43,91,0.2)_0%,rgba(43,18,76,0)_70%)] blur-[40px]" />
-        <div className="absolute top-1/3 right-0 w-[300px] h-[300px] bg-[radial-gradient(circle,rgba(212,175,55,0.06)_0%,transparent_60%)] blur-[30px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] md:w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(82,43,91,0.15)_0%,rgba(43,18,76,0)_70%)] blur-[30px]" />
+        <div className="absolute top-1/3 right-0 w-[250px] h-[250px] bg-[radial-gradient(circle,rgba(212,175,55,0.05)_0%,transparent_60%)] blur-[20px]" />
       </div>
 
       <LuxuryPattern variant="islamic" opacity="opacity-[0.03]" />
       <HeroParticlesGold />
       <ArabesqueGate />
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(28,11,51,0.6)_100%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(28,11,51,0.5)_100%)] pointer-events-none z-0" />
 
       <motion.div
         ref={contentRef}
         style={{ y }}
-        className="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl w-full pt-10"
+        className="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl w-full pt-10 gpu"
       >
         <motion.p
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: easeOutExpo }}
-          className="text-[#D4AF37]/50 text-sm md:text-base tracking-[0.5em] uppercase mb-10 font-cinzel"
+          transition={{ duration: 0.6, delay: 0.2, ease: easeOutExpo }}
+          className="text-[#D4AF37]/50 text-sm md:text-base tracking-[0.5em] uppercase mb-10 font-cinzel gpu"
         >
           {greeting}
         </motion.p>
 
         {guestName && (
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: easeOutExpo }}
-            className="mb-12 bg-[#522B5B]/10 px-8 py-4 rounded-2xl border border-[#D4AF37]/10"
+            transition={{ duration: 0.6, delay: 0.35, ease: easeOutExpo }}
+            className="mb-12 bg-[#522B5B]/10 px-8 py-4 rounded-2xl border border-[#D4AF37]/10 gpu"
           >
             <p className="text-[#F5E6CA]/40 text-xs tracking-[0.45em] uppercase mb-2 font-cinzel">{guestTitle}</p>
             <h2 className="text-[#F5E6CA] text-xl md:text-2xl font-light font-cormorant italic">{guestName}</h2>
@@ -135,24 +120,24 @@ export default function Hero({ greeting, guestTitle, guestName, title, subtitle,
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, delay: 0.5, ease: easeOutExpo }}
-          className="w-28 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-8"
+          transition={{ duration: 1, delay: 0.45, ease: easeOutExpo }}
+          className="w-28 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-8 gpu"
         />
 
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.6, ease: easeOutExpo }}
-          className="text-5xl sm:text-6xl md:text-8xl lg:text-[9rem] font-cinzel text-[#D4AF37] tracking-[0.04em] leading-[1.1] gold-glow pb-2"
+          transition={{ duration: 1, delay: 0.55, ease: easeOutExpo }}
+          className="text-5xl sm:text-6xl md:text-8xl lg:text-[9rem] font-cinzel text-[#D4AF37] tracking-[0.04em] leading-[1.1] gold-glow pb-2 gpu"
         >
           {title}
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.9, ease: easeOutExpo }}
-          className="mt-6 text-[#F5E6CA]/60 text-base md:text-lg font-cormorant tracking-[0.5em] uppercase italic"
+          transition={{ duration: 0.8, delay: 0.8, ease: easeOutExpo }}
+          className="mt-6 text-[#F5E6CA]/60 text-base md:text-lg font-cormorant tracking-[0.5em] uppercase italic gpu"
         >
           {subtitle}
         </motion.p>
@@ -160,15 +145,15 @@ export default function Hero({ greeting, guestTitle, guestName, title, subtitle,
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, delay: 1.1, ease: easeOutExpo }}
-          className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mt-12 mb-8"
+          transition={{ duration: 1, delay: 1, ease: easeOutExpo }}
+          className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mt-10 mb-6 gpu"
         />
 
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.3, ease: easeOutExpo }}
-          className="max-w-2xl relative"
+          transition={{ duration: 0.8, delay: 1.1, ease: easeOutExpo }}
+          className="max-w-2xl relative gpu"
         >
           <span className="absolute -top-6 -left-4 text-5xl text-[#D4AF37]/10 font-serif leading-none">&quot;</span>
           <p className="text-[#F5E6CA]/70 text-sm md:text-lg leading-relaxed font-cormorant italic px-4">&ldquo;{verse}&rdquo;</p>
@@ -179,10 +164,14 @@ export default function Hero({ greeting, guestTitle, guestName, title, subtitle,
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 0.8 }}
-          className="absolute -bottom-12 md:-bottom-20 left-1/2 -translate-x-1/2"
+          transition={{ delay: 1.6, duration: 0.6 }}
+          className="absolute -bottom-12 md:-bottom-20 left-1/2 -translate-x-1/2 gpu"
         >
-          <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} className="flex flex-col items-center gap-2">
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-2 gpu"
+          >
             <span className="text-[#F5E6CA]/30 text-[10px] tracking-[0.4em] uppercase font-cinzel">{scrollHint}</span>
             <div className="w-[1px] h-8 bg-gradient-to-b from-[#D4AF37]/30 via-[#D4AF37]/10 to-transparent" />
           </motion.div>

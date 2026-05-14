@@ -1,17 +1,12 @@
 "use client";
 
-import { useRef, useEffect, ReactNode } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-gsap.registerPlugin(ScrollTrigger);
-
 interface SectionWrapperProps {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
   id?: string;
-  delay?: number;
   style?: React.CSSProperties;
 }
 
@@ -19,45 +14,19 @@ export default function SectionWrapper({
   children,
   className,
   id,
-  delay = 0,
   style,
 }: SectionWrapperProps) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          delay,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 88%",
-            once: true,
-          },
-        }
-      );
-    });
-
-    return () => ctx.revert();
-  }, [delay]);
-
   return (
-    <section
+    <motion.section
       id={id}
-      ref={ref}
-      className={cn("relative overflow-hidden opacity-0", className)}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+      className={cn("relative overflow-hidden gpu", className)}
       style={style}
     >
       {children}
-    </section>
+    </motion.section>
   );
 }

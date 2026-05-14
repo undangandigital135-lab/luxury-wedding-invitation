@@ -37,16 +37,16 @@ export default function DigitalGift({ title, subtitle, intro, message, bankName,
       <div className="relative z-10 max-w-lg mx-auto px-6 md:px-8 pt-10">
         <div className="text-center mb-16 md:mb-24">
           <motion.p variants={subtitleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.5em] uppercase mb-6 font-cinzel drop-shadow-sm">
+            className="text-[#D4AF37]/60 text-xs md:text-sm tracking-[0.5em] uppercase mb-6 font-cinzel gpu">
             {subtitle}
           </motion.p>
           <motion.h2 variants={titleVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="text-5xl md:text-6xl font-cinzel text-[#D4AF37] tracking-[0.02em] mb-6 gold-glow pb-2">
+            className="text-5xl md:text-6xl font-cinzel text-[#D4AF37] tracking-[0.02em] mb-6 gold-glow pb-2 gpu">
             {title}
           </motion.h2>
-          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.5 }} className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-8 mb-8" />
-          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.8 }}
-            className="text-[#F5E6CA]/60 text-base md:text-xl leading-[1.8] font-cormorant italic drop-shadow-md">
+          <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }} className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-8 mb-8 gpu" />
+          <motion.p initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-[#F5E6CA]/60 text-base md:text-lg leading-[1.8] font-cormorant italic gpu">
             {intro}
           </motion.p>
         </div>
